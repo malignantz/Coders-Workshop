@@ -29,7 +29,7 @@ class LinkedList {
 
   print() {
     if (this.head === null) {
-      return '';
+      return "";
     }
     let objString = `${this.head.element}`;
     let traversal = this.head.next;
@@ -41,6 +41,24 @@ class LinkedList {
   }
 
   reverse() {
-    // Your code goes here
+    let newHead;
+    let node = this.head;
+    let nodeList = [];
+    while (node) {
+      nodeList.push(node);
+      node = node.next;
+    }
+    //console.log(nodeList);
+    nodeList = nodeList.reverse();
+    this.head = nodeList[0];
+    for (let i = 0; i < nodeList.length - 1; i++) {
+      nodeList[i].next = nodeList[i + 1];
+    }
+    nodeList[nodeList.length - 1].next = null;
+    return this;
   }
 }
+
+let LL = new LinkedList();
+[1, 2, 3, 4, 5].forEach(item => LL.add(item));
+console.log(LL.reverse().print());
