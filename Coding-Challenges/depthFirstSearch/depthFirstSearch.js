@@ -12,15 +12,22 @@ class Node {
   }
 
   depthFirstSearch(array) {
-    // write your code here
+    array.push(this.name);
+    this.children.forEach(child => {
+      child.depthFirstSearch(array);
+    });
+    return array;
   }
 }
 
 const test1 = new Node("A");
-test1.addChild("B").addChild("C").addChild("D");
+test1
+  .addChild("B")
+  .addChild("C")
+  .addChild("D");
 test1.children[0].addChild("E").addChild("F");
 test1.children[2].addChild("G").addChild("H");
 test1.children[0].children[1].addChild("I").addChild("J");
 test1.children[2].children[0].addChild("K");
 
-test1.depthFirstSearch([]);
+console.log(test1.depthFirstSearch([]));
