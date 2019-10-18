@@ -1,7 +1,14 @@
 #!/usr/bin/env node
 
 const twoNumberSum = (numbers, target) => {
-
+  let correspondingNumbers = {};
+  for (let num of numbers) {
+    correspondingNumbers[target - num] = true;
+    if (correspondingNumbers[num]) {
+      return [target - num, num];
+    }
+  }
+  return [];
 };
 
 console.log(twoNumberSum([4, 6], 10)); // [4, 6]
